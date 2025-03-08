@@ -44,29 +44,121 @@ const int halfStep[8][4] = {   //halfStepDrive
 // HTML web page editable
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <title>Controllo motore stepper</title>  <!-- web page title -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controllo Motore Stepper</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #1e3c72, #2a5298);
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #a7c7e7;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.1em;
+      color: #d3e4f5;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #3f70a4;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #333;
+      font-size: 1em;
+      margin: 10px 0;
+      box-sizing: border-box;
+      text-align: center; /* Centra il testo dentro l'input */
+    }
+
+    input[type="number"]:focus, select:focus {
+      border-color: #5bc0de;
+      outline: none;
+    }
+
+    select {
+      text-align: center; /* Centra il testo nel menu a tendina */
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #3f70a4;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5bc0de;
+    }
+
+    button:active {
+      background-color: #2a5298;
+    }
+
+    .input-container {
+      margin-bottom: 20px;
+    }
+  </style>
   <script>
-    function invia() { //function to send steps to web page
+    function invia() {
       var passi = document.getElementById("passi").value;
       var metodo = document.getElementById("metodo").value;
-      fetch("/stepper?passi=" + passi + "&metodo=" + metodo);
+      // Aggiungi il numero di passi all'URL
+      window.location.href = window.location.pathname + "?passi=" + passi + "&metodo=" + metodo;
     }
   </script>
 </head>
 <body>
-  <h2>Controllo Motore Stepper</h2>
-  <label>Numero di passi:</label>
-  <input type="number" id="passi" value="100"> <!-- input steps -->
-  
-  <label>Metodo di funzionamento:</label>
-  <select id="metodo">
-    <option value="wave">Wave Drive</option>
-    <option value="full">Full Step</option>
-    <option value="half">Half Step</option>
-  </select>
-  <button onclick="invia()">Invia</button>
+  <div class="container">
+    <h2>Controllo Motore Stepper</h2>
+
+    <div class="input-container">
+      <label for="passi">Numero di passi:</label>
+      <input type="number" id="passi" value="100">
+    </div>
+
+    <div class="input-container">
+      <label for="metodo">Metodo di funzionamento:</label>
+      <select id="metodo">
+        <option value="wave">Wave Drive</option>
+        <option value="full">Full Step</option>
+        <option value="half">Half Step</option>
+      </select>
+    </div>
+
+    <button onclick="invia()">Invia</button>
+  </div>
 </body>
 </html>
 )rawliteral";
