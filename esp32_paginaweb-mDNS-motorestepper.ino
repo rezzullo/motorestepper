@@ -94,7 +94,7 @@ const char index_html[] PROGMEM = R"rawliteral(
       font-size: 1em;
       margin: 10px 0;
       box-sizing: border-box;
-      text-align: center; /* Centra il testo dentro l'input */
+      text-align: center; 
     }
 
     input[type="number"]:focus, select:focus {
@@ -103,7 +103,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     }
 
     select {
-      text-align: center; /* Centra il testo nel menu a tendina */
+      text-align: center; 
     }
 
     button {
@@ -134,7 +134,6 @@ const char index_html[] PROGMEM = R"rawliteral(
     function invia() {
       var passi = document.getElementById("passi").value;
       var metodo = document.getElementById("metodo").value;
-      // Aggiungi il numero di passi all'URL
       window.location.href = window.location.pathname + "?passi=" + passi + "&metodo=" + metodo;
     }
   </script>
