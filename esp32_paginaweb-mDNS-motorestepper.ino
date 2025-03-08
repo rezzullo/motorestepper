@@ -46,7 +46,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Controllo motore stepper</title>  //title web page
+  <title>Controllo motore stepper</title>  <!-- web page title -->
   <script>
     function invia() { //function to send steps to web page
       var passi = document.getElementById("passi").value;
@@ -58,7 +58,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <body>
   <h2>Controllo Motore Stepper</h2>
   <label>Numero di passi:</label>
-  <input type="number" id="passi" value="100"> //input steps
+  <input type="number" id="passi" value="100"> <!-- input steps -->
   
   <label>Metodo di funzionamento:</label>
   <select id="metodo">
@@ -138,11 +138,11 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   // mDNS configuration (example name: esp32.local)
-  if (!MDNS.begin("esp32")) {
+  if (!MDNS.begin("StepperMotor")) {
     Serial.println("Errore avvio mDNS");
     return;
   }
-  Serial.println("mDNS avviato: http://esp32.local");
+  Serial.println("mDNS avviato: http://StepperMotor.local");
 
   // web server configuration
   server.on("/", []() {
